@@ -117,7 +117,7 @@ city_distribution["bin_category"] = pd.cut(
 top_cities = city_distribution.head(10).copy().reset_index(drop=True)
 
 # Streamlit App
-st.title("Clustering Kota dengan Teknik Binning")
+st.subheader("Clustering Kota dengan Teknik Binning")
 
 # Plot hasil clustering
 st.subheader("Top 10 Cities - Count with Binning Categories")
@@ -177,7 +177,7 @@ state_distribution["bin_category"] = pd.cut(
 top_state = state_distribution.head(10).copy().reset_index(drop=True)
 
 # Streamlit App
-st.title("Clustering Negara Bagian dengan Teknik Binning")
+st.subheader("Clustering Negara Bagian dengan Teknik Binning")
 
 # Plot hasil clustering
 st.subheader("Top 10 State - Count with Binning Categories")
