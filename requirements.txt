@@ -1,5 +1,5 @@
-Library yang digunakan :
-- pandas
-- matplotlib
-- numpy
-- streamlit
+pandas
+matplotlib
+seaborn
+numpy
+streamlit
