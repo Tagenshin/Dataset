@@ -1,3 +1,9 @@
-# Dataset
+# Collecting Dashboard
 
-Ini adalah proyek analisis data dari dicoding
+## Setup Install Library - Terminal
+
+- pip install pandas matplotlib seaborn numpy streamlit
+
+## Run steamlit app
+
+- streamlit run dashboard.py
