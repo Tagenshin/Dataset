@@ -5,7 +5,7 @@ import numpy as np
 import seaborn as sns
 
 # Load dataset
-df = pd.read_csv("main_data.csv")
+df = pd.read_csv("dasboard/main_data.csv")
 
 # Hitung jumlah pelanggan per kota
 city_distribution = df["customer_city"].value_counts().reset_index()
