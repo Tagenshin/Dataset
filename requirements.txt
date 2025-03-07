@@ -1,4 +1,4 @@
-# Library yang digunakan :
+Library yang digunakan :
 - pandas
 - matplotlib
 - numpy
