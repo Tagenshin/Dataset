@@ -4,33 +4,32 @@
 
 ### (Opsional) Buat Virtual Environment (disarankan agar tidak mengganggu sistem utama):
 
-python -m venv myenv
-source myenv/bin/activate # Mac/Linux
-myenv\Scripts\activate # Windows
+python -m venv myenv<br>
+source myenv/bin/activate # Mac/Linux<br>
+myenv\Scripts\activate # Windows<br>
 
 ### Install Library
 
-pip install pandas
-pip install matplotlib
-pip install seaborn
-pip install numpy
-pip install streamlit
+pip install pandas <br>
+pip install matplotlib<br>
+pip install seaborn<br>
+pip install numpy<br>
+pip install streamlit<br>
 
 ## Setup Install Library - Terminal (Conda - Anaconda Prompt)
 
 ### Buat dan Aktifkan Conda Environment
 
-conda create --name myenv python=3.9
-conda activate myenv
+conda create --name myenv python=3.9<br>
+conda activate myenv<br>
 
 ### Install Library Satu per Satu dengan Conda:
 
-conda install pandas
-conda install matplotlib
-conda install seaborn
-conda install numpy
-conda install -c conda-forge streamlit
+conda install pandas<br>
+conda install matplotlib<br>
+conda install seaborn<br>
+conda install numpy<br>
+conda install -c conda-forge streamlit<br>
 
 ## Run steamlit app
 
-streamlit run dashboard.py
