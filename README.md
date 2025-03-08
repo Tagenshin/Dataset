@@ -33,3 +33,4 @@ conda install -c conda-forge streamlit<br>
 
 ## Run steamlit app
 
+streamlit run dashboard.py
