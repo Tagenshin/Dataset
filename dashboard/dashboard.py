@@ -5,7 +5,7 @@ import numpy as np
 import seaborn as sns
 
 # Load dataset
-df = pd.read_csv("dashboard/main_data.csv")
+df = pd.read_csv("main_data.csv")
 
 # Hitung jumlah pelanggan per kota
 city_distribution = df["customer_city"].value_counts().reset_index()
@@ -35,18 +35,21 @@ with col1:
 with col2:
     st.metric("Total customers", value=most_populous_city["count"])
 
-# Visualisasi kota dengan pelanggan terbanyak
-st.subheader("10 Kota dengan Pelanggan Terbanyak")
+# fitur interaktif - Slider untuk memilih jumlah kota teratas
+top_n_cities = st.slider("Pilih jumlah kota teratas untuk ditampilkan:", 5, 20, 10)
+
+# Update visualisasi kota dengan pelanggan terbanyak
+st.subheader(f"{top_n_cities} Kota dengan Pelanggan Terbanyak")
 fig, ax = plt.subplots(figsize=(12, 6))
 bars = ax.bar(
-    city_distribution["customer_city"][:10],
-    city_distribution["count"][:10],
-    color="purple",
+    city_distribution["customer_city"][:top_n_cities],
+    city_distribution["count"][:top_n_cities],
+    color="lightblue",
 )
 ax.set_xlabel("City")
 ax.set_ylabel("Number of Customers")
-ax.set_title("10 Cities with the Most Customers")
-ax.set_xticklabels(city_distribution["customer_city"][:10], rotation=45)
+ax.set_title(f"Top {top_n_cities} Cities with the Most Customers")
+ax.set_xticklabels(city_distribution["customer_city"][:top_n_cities], rotation=45)
 
 # Menambahkan jumlah pelanggan di atas tiap bar
 for bar in bars:
@@ -61,31 +64,21 @@ for bar in bars:
 
 st.pyplot(fig)
 
-st.subheader("Negara Bagian dengan Pelanggan Terbanyak")
+# fitur interaktif - Slider untuk memilih jumlah negara bagian teratas
+top_n_states = st.slider("Pilih jumlah negara bagian teratas untuk ditampilkan:", 5, 20, 10)
 
-# Negara bagian dengan jumlah pelanggan terbanyak
-most_populous_state = state_distribution.iloc[0]
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.metric("State", value=most_populous_state["customer_state"])
-
-with col2:
-    st.metric("Total customers", value=most_populous_state["count"])
-
-# Visualisasi 10 negara bagian dengan pelanggan terbanyak
-st.subheader("10 Negara Bagian dengan Pelanggan Terbanyak")
+# Update visualisasi negara bagian dengan pelanggan terbanyak
+st.subheader(f"{top_n_states} Negara Bagian dengan Pelanggan Terbanyak")
 fig, ax = plt.subplots(figsize=(12, 6))
 bars = ax.bar(
-    state_distribution["customer_state"][:10],
-    state_distribution["count"][:10],
-    color="blue",
+    state_distribution["customer_state"][:top_n_states],
+    state_distribution["count"][:top_n_states],
+    color="lightblue",
 )
 ax.set_xlabel("State")
 ax.set_ylabel("Number of Customers")
-ax.set_title("Top 10 State with the Most Customers")
-ax.set_xticklabels(state_distribution["customer_state"], rotation=45)
+ax.set_title(f"Top {top_n_states} States with the Most Customers")
+ax.set_xticklabels(state_distribution["customer_state"][:top_n_states], rotation=45)
 
 # Menambahkan jumlah pelanggan di atas tiap bar
 for bar in bars:
@@ -117,7 +110,7 @@ city_distribution["bin_category"] = pd.cut(
 top_cities = city_distribution.head(10).copy().reset_index(drop=True)
 
 # Streamlit App
-st.subheader("Clustering Kota dengan Teknik Binning")
+st.title("Clustering Kota dengan Teknik Binning")
 
 # Plot hasil clustering
 st.subheader("Top 10 Cities - Count with Binning Categories")
@@ -177,7 +170,7 @@ state_distribution["bin_category"] = pd.cut(
 top_state = state_distribution.head(10).copy().reset_index(drop=True)
 
 # Streamlit App
-st.subheader("Clustering Negara Bagian dengan Teknik Binning")
+st.title("Clustering Negara Bagian dengan Teknik Binning")
 
 # Plot hasil clustering
 st.subheader("Top 10 State - Count with Binning Categories")
@@ -199,12 +192,12 @@ st.pyplot(fig1)
 # Visualisasi distribusi pelanggan berdasarkan binning kategori negara bagian
 st.subheader("Distribusi Negara Bagian Berdasarkan Kategori Pelanggan")
 bin_edges_state = state_distribution["bin_category"].value_counts().sort_index()
-num_bins = len(bin_edges_state)
+
 fig, ax = plt.subplots(figsize=(8, 5))
 bars = ax.bar(
     bin_edges_state.index,
     bin_edges_state.values,
-    color=["#2F3E58", "teal", "lightgreen"][:num_bins],
+    color=["#2F3E58", "teal", "lightgreen"],
 )
 ax.set_xlabel("Category")
 ax.set_ylabel("Number of Cities")
